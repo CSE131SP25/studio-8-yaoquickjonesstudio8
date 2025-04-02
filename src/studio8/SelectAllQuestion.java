@@ -1,9 +1,9 @@
 package studio8;
-
+import java.util.Scanner;
 import support.cse131.NotYetImplementedException;
 
 public class SelectAllQuestion extends MultipleChoiceQuestion {
-
+	
 	/**
 	 * Constructor
 	 * 
@@ -13,7 +13,8 @@ public class SelectAllQuestion extends MultipleChoiceQuestion {
 	 */
 	public SelectAllQuestion(String prompt, String answer, String[] choices) {
 		// Hint: 1 point per choice
-		throw new NotYetImplementedException();
+		super(prompt, answer, choices.length, choices);
+		
 	}
 	
 	/**
@@ -21,8 +22,11 @@ public class SelectAllQuestion extends MultipleChoiceQuestion {
 	 * @param String givenAnswer to check for points
 	 */
 	public int checkAnswer(String givenAnswer) {
-		throw new NotYetImplementedException();
-	}
+		return this.getPoints() - (this.findMissingCorrectAnswers(givenAnswer) + this.findIncorrectGivenAnswers(givenAnswer));
+			
+		
+		}
+	
 
 	/**
 	 * Count the amount of correct answers that are not in the provided givenAnswer

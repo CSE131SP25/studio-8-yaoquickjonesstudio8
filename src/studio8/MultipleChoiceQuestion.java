@@ -1,9 +1,11 @@
 package studio8;
 
+import java.util.Scanner;
+
 import support.cse131.NotYetImplementedException;
 
 public class MultipleChoiceQuestion extends Question {
-
+	private String[] choices;
 	/**
 	 * Constructor
 	 * @param prompt
@@ -15,7 +17,8 @@ public class MultipleChoiceQuestion extends Question {
 		// Call the super class constructor, then create and set
 		// instance variables for any values that aren't handled
 		// by the base class
-		throw new NotYetImplementedException();
+		super(prompt, answer, points);
+		this.choices = choices;
 	}
 	
 	/**
@@ -23,7 +26,10 @@ public class MultipleChoiceQuestion extends Question {
 	 * the choices present for the question.
 	 */
 	public void displayPrompt() {
-		throw new NotYetImplementedException();
+		super.displayPrompt();
+		for(int i=0; i < choices.length; i++) {
+			System.out.println((i+1) + ". " + choices[i]);
+		}
 	}
 	
 	/**
@@ -31,11 +37,17 @@ public class MultipleChoiceQuestion extends Question {
 	 * @return String[] of choices
 	 */
 	public String[] getChoices() {
-		throw new NotYetImplementedException();
+		return choices;
 	}
 	
 	public static void main(String[] args) {
 		// TODO: create your own MultipleChoiceQuestion
+		String[] answers = {"uno", "dos", "tres"};
+		Scanner in = new Scanner(System.in);
+		MultipleChoiceQuestion mcq = new MultipleChoiceQuestion("what is 1+1 en espanol?", "dos", 1000000, answers);
+		mcq.displayPrompt();
+		String response = in.next();
+		System.out.println(mcq.checkAnswer(response));
 	}
 
 }
